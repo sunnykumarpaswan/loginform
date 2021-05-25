@@ -1,0 +1,24 @@
+<form [formGroup]="postData" style="text-align: center;"><br><br>
+    <div class="form-group">
+
+        <label for="Name"> Name </label> <br>
+
+        <input type="text" class="form-control" formControlName="Name" id="Name " placeholder="Name ">
+
+    </div>
+    <div class="form-group ">
+
+        <label for="Name "> Roll_number </label> <br>
+        <input type="text " class="form-control " formControlName="Roll_number" id="Roll_number " placeholder="Roll_number">
+
+    </div>
+    <div class="form-group ">
+
+        <label for="Name ">Section</label> <br>
+        <input type="text " class="form-control " formControlName="Section" id="Section" placeholder="Section ">
+
+    </div>
+
+    <button *ngIf="id" (click)="updateStudent()">Update</button>
+    <button *ngIf="!id" (click)="createPost()">Add</button>
+</form>

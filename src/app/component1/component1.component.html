@@ -1,0 +1,70 @@
+<form [formGroup]="postData" style="text-align: center;display: none;" id="se"><br><br>
+    <div class="form-group">
+
+        <label for="Name"> Name </label><br>
+        <input type="text" class="form-control" formControlName="Name" id="Name " placeholder="Name ">
+
+    </div>
+    <div class="form-group ">
+
+        <label for="Name "> Roll_number </label><br>
+        <input type="text " class="form-control " formControlName="Roll_number" id="Roll_number " placeholder="Roll_number">
+
+    </div>
+    <div class="form-group ">
+
+        <label for="Name ">Section</label><br>
+        <input type="text " class="form-control " formControlName="Section" id="Section" placeholder="Section ">
+
+    </div>
+    <!-- <input #title type="text " class="form-control ">
+    <input #title type="text " class="form-control "> -->
+    <button *ngIf="!update" (click)="createPost()">ADD</button>
+    <button *ngIf="update" (click)="updateStudent()">Update</button>
+</form>
+
+
+<!--<button class=" " routerLink="/component2 ">ADD</button> -->
+
+<table class="table " border="1 ">
+    <thead>
+        <tr>
+            <th scope="col ">Name</th>
+            <th>Roll_number</th>
+            <th>Section</th>
+            <th></th>
+            <th></th>
+
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+
+
+        <tr *ngFor="let post of posts " class="list-group-item ">
+
+            <td scope="row ">{{ post.fields.Name}}</td>
+            <td scope="row ">{{ post.fields.Roll_number }}</td>
+            <td scope="row ">{{ post.fields.Section }}</td>
+            <td>
+                <button (click)="updatePost(post) ;my()" class="btn btn-default btn-sm ">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Edit_icon_%28the_Noun_Project_30184%29.svg/1024px-Edit_icon_%28the_Noun_Project_30184%29.svg.png " style="height: 20px; "></button>
+            </td>
+            <td>
+                <div> <button (click)="deletePost(post) " class="btn btn-danger btn-sm pull-right ">
+                    <img src="data:image/png;base64,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" style="
+            height: 20px; "></button>
+
+                </div>
+            </td>
+
+
+
+        </tr>
+
+    </tbody>
+</table>
+<button class=" " routerLink="/component2">ADD</button>
